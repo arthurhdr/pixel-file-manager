@@ -1,13 +1,13 @@
 # pixel-file-manager
 
-Aplicação web para armazenamente e gerenciamento de arquivos.
+Aplicação web para armazenamento e gerenciamento de arquivos.
 
 ## Menu
 
 - [Propósito](#pixel-file-manager)
 - [Tecnologias utilizadas](#tecnologias-utilizadas)
 - [Instalação e execução](#instalação-e-execução)
-    - [Requisítos](#requisítos)
+    - [Requisitos](#requisitos)
     - [Instalação](#instalação)
     - [Execução](#execução)
 - [Utilização](#utilização)
@@ -46,7 +46,7 @@ Aplicação web para armazenamente e gerenciamento de arquivos.
 
 ## Instalação e execução
 
-### Requisítos
+### Requisitos
 
 - Docker
 - Git
@@ -69,7 +69,7 @@ Crie também o arquivo .env conforme as especificações do arquivo .env.example
 
 ### Execução
 
-Para executar o programa é necessário ter o Docker instalado e aberto, na pasta do repositório (A pasta aonde está o docker-compose.yml) execute no terminal:
+Para executar o programa é necessário ter o Docker instalado e aberto, na pasta do repositório (A pasta onde está o docker-compose.yml) execute no terminal:
 
 ```bash
 docker-compose up --build
@@ -87,14 +87,14 @@ Ao acessar a porta do backend na rota /docs o usuário tem acesso aos endpoints 
 
 ### Utilizando o MinIO Console
 
-Para se ter acesso aos arquivos do site no MinIO por meio do MinIO console é necessário acessar a porta 9000 e no login colocar as informações do .env. No MinIO Console é possível ver os arquivos de cada usuário, compartilhar, baixar, apagar e gerenciar.
+Para se ter acesso aos arquivos do site no MinIO por meio do MinIO console é necessário acessar a porta 9001 e no login colocar as informações do .env. No MinIO Console é possível ver os arquivos de cada usuário, compartilhar, baixar, apagar e gerenciar.
 
 
 ### Utilizando o frontend
 
 Para usar o frontend acesse a porta 5173, o usuário será imediatamente redirecionado para a página de login, caso o registro de usuário não tenha sido feito ainda é necessário criar um usuário na página de registro, que pode ser acessado clicando no botão "Cadastre-se" da página de login.
 
-O usuário logado tem acesso a seu perfil isolado, com todos os arquivos que ele subir e podendo ver suas ver~sos, compartilhar um link de download temporário, deletar e ver o preview de fotos upadas.
+O usuário logado tem acesso a seu perfil isolado, com todos os arquivos que ele subir e podendo ver suas versões, compartilhar um link de download temporário, deletar e ver o preview de fotos upadas.
 
 ## Endpoints
 
@@ -125,7 +125,7 @@ Os endpoints da API são divididos em dois tipos: Os authentication, para autent
 
 A arquitetura do programa foi planejada para visar o programa mais eficiente, compacto, organizado e prezando pelos princípios do clean code, para fazer ele ter fácil entendimento e manutenção.
 
-A pasta principal do programa contém a pasta do backend, a pasta do frontend e o docker-compose.yml, responsável por orgasnizar os contêineres, tornando o programa executável facilmente em qualquer máquina. 
+A pasta principal do programa contém a pasta do backend, a pasta do frontend e o docker-compose.yml, responsável por organizar os contêineres, tornando o programa executável facilmente em qualquer máquina. 
 
 ### Arquitetura do backend
 
@@ -153,7 +153,7 @@ backend/
 
 O Dockerfile é o responsável por organizar o container do backend, o requirements.txt possui todas as bibliotecas necessárias que são usadas pelo Python no backend e a pasta app organiza o backend da aplicação.
 
-Na pasta routers estão organizados as rotas da API e quais ações são realizadas na databse do programa. Para a database escolhi a SQLite por ser leve, rápida, não necessitar de configuração, ser self-contained e de fácil uso, para isso usei também o toolkit SQLAlchemy do Python para interagir mais facilmente com a database. Os modelos dos objetos inseridos nas tabelas da database podem ser encontrados no arquivo models na pasta princípal e os Schemas de validação no arquivo schemas.py na pasta app.
+Na pasta routers estão organizados as rotas da API e quais ações são realizadas na databse do programa. Para a database escolhi a SQLite por ser leve, rápida, não necessitar de configuração, ser self-contained e de fácil uso, para isso usei também o toolkit SQLAlchemy do Python para interagir mais facilmente com a database. Os modelos dos objetos inseridos nas tabelas da database podem ser encontrados no arquivo models na pasta principal e os Schemas de validação no arquivo schemas.py na pasta app.
 
 O arquivo auth.py na pasta routers gerencia as rotas relacionadas as requests de usuário: Login, registro e conexão. O arquivo files.py gerencia as rotas relacionadas as requests de arquivo: Criação, deleção, compartilhamento, download e versionamento. Três tabelas são criadas na database: A users, a files e a file_versions, que gerencia as versões dos aplicativos e as informações básicas da aplicação, como tamanho, tipo, nome etc.
 
@@ -197,13 +197,13 @@ frontend/
 └── vite.config.ts
 ```
 
-Na pasta princípal do frontend está o Dockerfile responsável pela criação do container do frontend e o index.html, o ponto de entrada da aplicação que chama o main.tsx e é o arquivo que unifica todo o frontend.
+Na pasta principal do frontend está o Dockerfile responsável pela criação do container do frontend e o index.html, o ponto de entrada da aplicação que chama o main.tsx e é o arquivo que unifica todo o frontend.
 
 A pasta src é organizada de forma a separar os arquivos por suas respectivas funções. Na pasta components estão os componentes visuais do frontend. O ImagePreviewModal.tsx é o modal para mostrar o preview da imagem quando o usuário requerer. O layout.tsx é o layout básico de todas as páginas. O UploadModal.tsx é o modal de upload dos arquivos
 
-A pasta lib armazena configurações de bibliotecas externas e utilitários da aplicação. o api.ts configura o axios para chamadas do backend. O utils.ts contém váriasfunções auxiliares genéricas (Esse arquivo diminui em quase 100 linhas o Home.tsx e facilitou muito a manutenção).
+A pasta lib armazena configurações de bibliotecas externas e utilitários da aplicação. o api.ts configura o axios para chamadas do backend. O utils.ts contém várias funções auxiliares genéricas (Esse arquivo diminui em quase 100 linhas o Home.tsx e facilitou muito a manutenção).
 
-A pasta pages contém as páginas da aplciação: A página de login, de registro e a página principal. A pasta Store contém o arquivo que controla se o usuário está logado e armazena o token da sessão.
+A pasta pages contém as páginas da aplicação: A página de login, de registro e a página principal. A pasta Store contém o arquivo que controla se o usuário está logado e armazena o token da sessão.
 
 Na pasta src em si há o index.css que unifica o visual, o App.tsx que gerencia o roteamento e a estrutura principal e o main.tsx, que renderiza o TS no HTML
 
@@ -220,17 +220,17 @@ Todas as funcionalidades, obrigatórias e opcionais foram implementadas com suce
 ### Página principal
 
 - Exibe os arquivos enviados pelo usuário logado com nome do arquivo, tamanho, versão e data de upload
-- Ações disponíveis: Preview para imagens, download, deletar, comaprtilhar link de download e ver versões do mesmo arquivo (Com versões anteriores tendo funções de download e deletar)
+- Ações disponíveis: Preview para imagens, download, deletar, compartilhar link de download e ver versões do mesmo arquivo (Com versões anteriores tendo funções de download e deletar)
 
 ### Upload de arquivos
 
 - Upload via modal no frontend
-- Restrições de upload: Arquivos de no máximo 10 MB com apenas arquivos .txt, .pdf, .jpeg, .jpg, .png e .txt permitidos.
+- Restrições de upload: Arquivos de no máximo 10 MB com apenas arquivos .txt, .pdf, .jpeg, .jpg e .png permitidos.
 - Feedback visual: Tela de carregamento, sucesso, ou erro
 
 ### Download de arquivos
 
-- O usuário só pode baixar arquivos que ele mesmo tem em seu perfíl ou com links de compartilhamento de download 
+- O usuário só pode baixar arquivos que ele mesmo tem em seu perfil ou com links de compartilhamento de download 
 - O arquivo serve o arquivo original com streaming
 - O usuário pode baixar qualquer versão de um mesmo arquivo
 
@@ -243,7 +243,7 @@ Todas as funcionalidades, obrigatórias e opcionais foram implementadas com suce
 ### Funcionalidades adicionais
 
 - Backend com APIs para: Autenticação, upload de arquivos, listagem de arquivos, download de arquivos e exclusão de arquivos
-- Arquivos como Metadata armazenada no banco contendo: ID, Usuário dono, nome original, nome no storage, tipo MIME, tamnanho, data de criação e se está ou não deletado
+- Arquivos como Metadata armazenada no banco contendo: ID, Usuário dono, nome original, nome no storage, tipo MIME, tamanho, data de criação e se está ou não deletado
 - Implementação de cache para tornar a aplicação mais eficiente
 - Armazenamento utilizando MinIO
 - Dockerização da aplicação
