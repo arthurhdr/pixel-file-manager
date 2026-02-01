@@ -1,0 +1,67 @@
+services:
+  backend:
+    build: ./backend
+    container_name: pixel_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - MINIO_ENDPOINT=minio:9000
+      - MINIO_ACCESS_KEY=${MINIO_ROOT_USER}
+      - MINIO_SECRET_KEY=${MINIO_ROOT_PASSWORD}
+      - REDIS_URL=redis://${REDIS_HOST}:${REDIS_PORT}
+      - DATABASE_URL=sqlite:///./pixel_breeders.db
+    depends_on:
+      - minio
+      - redis
+    networks:
+      - pixel_network
+
+  frontend:
+    build: ./frontend
+    container_name: pixel_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - pixel_network
+
+  minio:
+    image: minio/minio:latest
+    container_name: pixel_minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+    command: server /data --console-address ":9001"
+    networks:
+      - pixel_network
+
+  redis:
+    image: redis:alpine
+    container_name: pixel_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - pixel_network
+
+volumes:
+  minio_data:
+  redis_data:
+
+networks:
+  pixel_network:
+    driver: bridge
