@@ -133,6 +133,7 @@ Para o backend eu decidi utilizar o framework FastAPI, devido a sua facilidade d
 
 O backend se organiza da seguinte forma:
 
+```
 backend/
 ├── app/
 │   ├── routers/
@@ -148,6 +149,7 @@ backend/
 │   └── schemas.py
 ├── Dockerfile
 └── requirements.txt
+```
 
 O Dockerfile é o responsável por organizar o container do backend, o requirements.txt possui todas as bibliotecas necessárias que são usadas pelo Python no backend e a pasta app organiza o backend da aplicação.
 
@@ -165,6 +167,7 @@ Para o frontend foi utilizado TypeScript + React com Tailwind na estilização e
 
 O frontend se organiza dessa forma:
 
+```
 frontend/
 ├── src/
 │   ├── components/
@@ -192,12 +195,13 @@ frontend/
 ├── tsconfig.json
 ├── tsconfig.node.json
 └── vite.config.ts
+```
 
-Na pasta princípal do frontend está o Dockerfile responsável pela criação do container do frontend e o index.html, o ponto de entrada da aplicação que chama o index.tsx e é o arquivo que unifica todo o frontend.
+Na pasta princípal do frontend está o Dockerfile responsável pela criação do container do frontend e o index.html, o ponto de entrada da aplicação que chama o main.tsx e é o arquivo que unifica todo o frontend.
 
 A pasta src é organizada de forma a separar os arquivos por suas respectivas funções. Na pasta components estão os componentes visuais do frontend. O ImagePreviewModal.tsx é o modal para mostrar o preview da imagem quando o usuário requerer. O layout.tsx é o layout básico de todas as páginas. O UploadModal.tsx é o modal de upload dos arquivos
 
-A pasta lib armazena configurações de bibliotecas externas e utilitários da aplicação. o api.ts configura o axios para chamadas do backend. O utils.ts contém váriasfunções auxiliares genéricas (Esse arquivo diminui em quase 100 linhas o index.html e facilitou muito a manutenção).
+A pasta lib armazena configurações de bibliotecas externas e utilitários da aplicação. o api.ts configura o axios para chamadas do backend. O utils.ts contém váriasfunções auxiliares genéricas (Esse arquivo diminui em quase 100 linhas o Home.tsx e facilitou muito a manutenção).
 
 A pasta pages contém as páginas da aplciação: A página de login, de registro e a página principal. A pasta Store contém o arquivo que controla se o usuário está logado e armazena o token da sessão.
 
